@@ -10,7 +10,7 @@ const {
     GraphQLID, 
     GraphQLInt,
     GraphQLList
- } = graphql;
+} = graphql;
 
 
 //GraphQL OBject Types:
@@ -78,6 +78,44 @@ const RootQuery = new GraphQLObjectType({
     }
 });
 
+//Mutations :
+const Mutation = new GraphQLObjectType({
+    name: 'Mutation',
+    fields: {
+        addAuthor: {
+            type: AuthorType,
+            args: {
+                name: { type: GraphQLString },
+                age: { type: GraphQLInt }
+            },
+            resolve(parent, args){
+                let author = new Author({
+                    name: args.name,
+                    age: args.age
+                })
+                return author.save();
+            }
+        },
+        addBook: {
+            type: BookType,
+            args: {
+                name: { type: GraphQLString },
+                genre: { type: GraphQLString },
+                authorid: { type: GraphQLID },
+            },
+            resolve(parent, args){
+                let book = new Book({
+                    name: args.name,
+                    genre: args.genre,
+                    authorid: args.authorid,
+                })
+                return book.save();
+            }
+        }
+    }
+})
+
 module.exports = new GraphQLSchema({
-    query: RootQuery
+    query: RootQuery,
+    mutation: Mutation
 })
