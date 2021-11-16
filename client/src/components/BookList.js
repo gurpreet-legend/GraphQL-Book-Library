@@ -13,12 +13,17 @@ const getBooksQuery = gql`
 const BookList = () => {
 
     const {loading, error, data} = useQuery(getBooksQuery);
-    console.log(loading, error, data);
 
     
     if(loading){
         return (
             <div>Loading...</div>
+        )
+    }
+
+    if(error){
+        return (
+            <div>Book list cannot be rendered</div>
         )
     }
     
