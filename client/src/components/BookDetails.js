@@ -44,12 +44,6 @@ const BookDetails = ({bookId}) => {
         )
     }
 
-    if(bookDetails.error){
-        return (
-            <div>Book details cannot be rendered</div>
-        )
-    }
-
     return (
         <div id="book-details">
             {displayBookDetails()}

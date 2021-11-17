@@ -17,13 +17,6 @@ const BookList = () => {
         )
     }
 
-    if(error){
-        return (
-            <div>Book list cannot be rendered</div>
-        )
-    }
-    
-
     return (
         <div>
             <ul id="book-list">
